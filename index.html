@@ -890,7 +890,7 @@
       
             // 創建牌組
             const suits = ['♠', '♥', '♦', '♣'];
-            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+            const values =['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
             let deck = [];
       
             for (let suit of suits) {
@@ -1145,7 +1145,7 @@
         
             // 添加一張新牌（模擬隨機）
             const suits = ['♠', '♥', '♦', '♣'];
-            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
             const newCard = {
                 suit: suits[Math.floor(Math.random() * 4)],
                 value: values[Math.floor(Math.random() * 10)]
@@ -1176,7 +1176,7 @@
         
             // 添加一張新牌（模擬隨機）
             const suits = ['♠', '♥', '♦', '♣'];
-            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+            const values =['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
             const newCard = {
                 suit: suits[Math.floor(Math.random() * 4)],
                 value: values[Math.floor(Math.random() * 10)]
@@ -1216,4 +1216,5 @@
     </script>
 </body>
 </html>
+
 
