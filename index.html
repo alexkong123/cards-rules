@@ -54,13 +54,13 @@
     
         .score-display {
             position: absolute;
-            bottom: 20px;
+            bottom: 10px;
             right: 20px;
             background: rgba(0, 0, 0, 0.6);
             color: #FFD700;
-            padding: 10px 20px;
+            padding: 6px 12px;
             border-radius: 30px;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
@@ -212,25 +212,33 @@
         .cards-container {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            min-height: 130px;
-            margin-bottom: 15px;
+            gap: 8px;
+            min-height: 110px;
+            margin-bottom: 12px;
+            flex-wrap: wrap; /* 允許換行 */
         }
     
         .card {
-            width: 75px;
-            height: 110px;
+            width: 60px;
+            height: 85px;
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease; /* 添加過渡效果 */
+        }
+
+                /* 補出的牌橫放樣式 */
+        .extra-card {
+            transform: rotate(90deg);
+            margin: 5px 0; /* 調整上下間距 */
         }
     
         .card::before {
@@ -244,19 +252,19 @@
         }
     
         .card-value {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
     
         .card-suit {
-            font-size: 1.5rem;
-            margin-top: 5px;
+            font-size: 1.3rem;
+            margin-top: 4px;
         }
     
         .controls {
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            padding: 0 15px 25px;
+            gap: 15px;
+            padding: 0 12px 20px;
         }
     
         /* 莊閑贏按鈕居中並排 */
@@ -1063,5 +1071,6 @@
     </script>
 </body>
 </html>
+
 
 
