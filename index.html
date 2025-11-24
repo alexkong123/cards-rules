@@ -202,7 +202,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            background: linear-gradient(145deg, #d32f2f, #b71c1c);
+            background: linear-gradient(145deg, #FFEB3B 0%, #FFC107 100%);
         }
   
         .player {
@@ -215,7 +215,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            background: linear-gradient(145deg, #1976d2, #0d47a1);
+            background: linear-gradient(145deg, #F44336 0%, #B71C1C 100%);
         }
   
         .player::before, .banker::before {
@@ -334,16 +334,20 @@
         }
   
         #banker-win {
-            background: linear-gradient(to right, #d32f2f, #b71c1c);
+            background: linear-gradient(to right, #FFF9C4 0%, #FFECB3 100%); /* Light yellow */
+  	    color: #333;
+            max-width: 200px;
         }
   
         #tie {
-            background: linear-gradient(to right, #ffc107, #ff9800);
-            max-width: 180px;
+            background: linear-gradient(to right, #C8E6C9 0%, #A5D6A7 100%); /* Light green */
+ 	    max-width: 180px;
         }
   
         #player-win {
-            background: linear-gradient(to right, #1976d2, #0d47a1);
+            background: linear-gradient(to right, #FFCDD2 0%, #FFAB91 100%); /* Light red */
+  	    color: #333;
+  	    max-width: 200px;
         }
   
         .draw-buttons {
@@ -366,11 +370,13 @@
         }
   
         #banker-draw {
-            background: linear-gradient(to right, #f57c00, #e65100);
+            background: linear-gradient(to right, #FFF9C4 0%, #FFECB3 100%); /* Light yellow */
+  	    color: #333;
         }
   
         #player-draw {
-            background: linear-gradient(to right, #0288d1, #01579b);
+            background: linear-gradient(to right, #FFCDD2 0%, #FFAB91 100%); /* Light red */
+  	    color: #333;
         }
   
         .draw-button:hover {
@@ -1210,3 +1216,4 @@
     </script>
 </body>
 </html>
+
