@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>百家樂牌例練習器</title>
+    <title>BA RULES練習器</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -540,17 +540,16 @@
     <!-- 主介面 -->
     <div class="main-screen" id="mainScreen">
         <div class="logo-container">
-            <div class="logo">百家樂牌例練習器</div>
+            <div class="logo">BA RULES練習器</div>
             <div class="subtitle">提升您的百家樂技巧與判斷力</div>
         </div>
     
         <div class="instructions">
             <h2>遊戲說明</h2>
             <p>1. 遊戲開始後，系統會為莊家和閑家各發兩張牌</p>
-            <p>2. 根據百家樂規則，判斷哪一方會獲勝或是否為和局</p>
-            <p>3. 點擊下方按鈕選擇您的預測結果</p>
-            <p>4. 每次正確預測得10分，錯誤扣5分</p>
-            <p>5. 計時器會記錄您的決策時間</p>
+            <p>2. 根據BA規則，判斷哪一方會獲勝或是否為和局</p>
+            <p>3. 每次正確預測得10分，錯誤扣5分</p>
+            <p>4. 計時器會記錄您的決策時間</p>
         </div>
     
         <button class="start-button" id="startButton">開始遊戲</button>
@@ -572,19 +571,19 @@
         <div class="game-board">
             <!-- 莊家在左 -->
             <div class="banker">
-                <div class="title">莊家</div>
+                <div class="title">Banker</div>
                 <div class="cards-container" id="banker-cards"></div>
                 <div class="draw-hint" id="banker-draw-hint" style="color: white; font-weight: bold; display: none;">
-                    請先補閑家牌
+                    請先補牌
                 </div>
             </div>
         
             <!-- 閑家在右 -->
             <div class="player">
-                <div class="title">閑家</div>
+                <div class="title">Player</div>
                 <div class="cards-container" id="player-cards"></div>
                 <div class="draw-hint" id="player-draw-hint" style="color: white; font-weight: bold; display: none;">
-                    請先補閑家牌
+                    請先補牌
                 </div>
             </div>
         </div>
@@ -1064,3 +1063,4 @@
     </script>
 </body>
 </html>
+
