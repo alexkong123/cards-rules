@@ -2,17 +2,18 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BA RULES練習器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>BA Rules練習器</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
             font-family: 'PingFang TC', 'Microsoft YaHei', sans-serif;
         }
-    
+
         body {
             display: flex;
             flex-direction: column;
@@ -21,8 +22,10 @@
             overflow: hidden;
             position: relative;
             color: white;
+            -webkit-user-select: none;
+            user-select: none;
         }
-    
+
         /* 主介面樣式 */
         .main-screen {
             display: flex;
@@ -30,41 +33,43 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
+            -webkit-overflow-scrolling: touch;
         }
-    
+
         .logo-container {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
-    
+
         .logo {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             font-weight: bold;
             color: #FFD700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
             margin-bottom: 10px;
         }
-    
+
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #FFFFFF;
             opacity: 0.9;
         }
-    
+
         .score-display {
             position: absolute;
-            bottom: 10px;
-            right: 20px;
+            bottom: 5px;   /* 修改為最底部 */
+            right: 15px;   /* 靠右放置 */
             background: rgba(0, 0, 0, 0.6);
             color: #FFD700;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 1.1rem;
+            padding: 6px 15px;  /* 縮小一點 */
+            border-radius: 20px;
+            font-size: 1.1rem;  /* 字體縮小 */
             font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            z-index: 10;
         }
-    
+
         .start-button {
             background: linear-gradient(to right, #FF416C, #FF4B2B);
             color: white;
@@ -77,39 +82,39 @@
             font-weight: bold;
             box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
             transition: all 0.3s ease;
+            touch-action: manipulation;
+            min-height: 55px;
         }
-    
-        .start-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(255, 75, 43, 0.5);
-        }
-    
+
         .start-button:active {
-            transform: translateY(1px);
+            transform: translateY(5px);
+            box-shadow: 0 4px 10px rgba(255, 75, 43, 0.4);
         }
-    
+
         .instructions {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 15px;
             padding: 25px;
-            margin: 30px;
-            max-width: 600px;
+            margin: 30px 0;
+            max-width: 95%;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-    
+
         .instructions h2 {
             color: #FFD700;
             margin-bottom: 15px;
+            font-size: 1.5rem;
         }
-    
+
         .instructions p {
             color: #FFFFFF;
             margin-bottom: 12px;
             line-height: 1.6;
             text-align: left;
+            font-size: 1.1rem;
         }
-    
+
         /* 遊戲介面樣式 */
         .game-container {
             display: none;
@@ -117,21 +122,22 @@
             flex-direction: column;
             height: 100%;
             position: relative;
+            -webkit-overflow-scrolling: touch;
         }
-    
+
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 12px 15px;
             background: rgba(0, 0, 0, 0.4);
         }
-    
+
         .back-button {
             background: rgba(255, 255, 255, 0.15);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 30px;
             cursor: pointer;
             font-size: 1rem;
@@ -139,16 +145,17 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
+            touch-action: manipulation;
         }
-    
-        .back-button:hover {
+
+        .back-button:active {
             background: rgba(255, 255, 255, 0.25);
         }
-    
+
         .timer-display {
             background: rgba(255, 255, 255, 0.15);
             color: white;
-            padding: 8px 15px;
+            padding: 6px 15px;
             border-radius: 20px;
             font-size: 1.1rem;
             font-weight: bold;
@@ -156,59 +163,62 @@
             align-items: center;
             gap: 8px;
         }
-    
+
         .game-board {
             display: flex;
             flex: 1;
             padding: 15px;
             gap: 15px;
+            overflow-x: auto;
         }
-    
-        /* 莊家在左，閑家在右 */
+
+        /* 莊家在左，閒家在右 */
         .banker {
             flex: 1;
+            min-width: 45%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 25px 15px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
             background: linear-gradient(145deg, #d32f2f, #b71c1c);
         }
-    
+
         .player {
             flex: 1;
+            min-width: 45%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 25px 15px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
             background: linear-gradient(145deg, #1976d2, #0d47a1);
         }
-    
+
         .player::before, .banker::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
+            height: 4px;
             background: rgba(255, 255, 255, 0.3);
         }
-    
+
         .title {
             color: white;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             font-weight: bold;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-    
+
         .cards-container {
             display: flex;
             justify-content: center;
@@ -217,7 +227,7 @@
             margin-bottom: 12px;
             flex-wrap: wrap; /* 允許換行 */
         }
-    
+
         .card {
             width: 60px;
             height: 85px;
@@ -235,136 +245,135 @@
             transition: transform 0.3s ease; /* 添加過渡效果 */
         }
 
-                /* 補出的牌橫放樣式 */
+        /* 補出的牌橫放樣式 */
         .extra-card {
             transform: rotate(90deg);
             margin: 5px 0; /* 調整上下間距 */
         }
-    
+
         .card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 25%;
+            height: 20%;
             background: rgba(0, 0, 0, 0.1);
         }
-    
+
         .card-value {
             font-size: 1.5rem;
         }
-    
+
         .card-suit {
             font-size: 1.3rem;
             margin-top: 4px;
         }
-    
+
         .controls {
             display: flex;
             flex-direction: column;
             gap: 15px;
             padding: 0 12px 20px;
         }
-    
-        /* 莊閑贏按鈕居中並排 */
+
+        /* 莊贏、和局、閒贏按鈕垂直排列 */
         .win-buttons {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 10px;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
             width: 100%;
         }
-    
+
         .win-button {
-            flex: 1;
-            max-width: 200px;
-            padding: 20px 5px;
-            font-size: 1.8rem;
-            border-radius: 15px;
-            border: none;
+            background: rgba(255, 255, 255, 0.2);
             color: white;
-            font-weight: bold;
+            border: none;
+            width: 100%;
+            max-width: 300px;
+            padding: 14px 5px;
+            font-size: 1.5rem;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
+            touch-action: manipulation;
         }
-    
-        .win-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-        }
-    
+
         .win-button:active {
             transform: translateY(3px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-    
+
         #banker-win {
             background: linear-gradient(to right, #d32f2f, #b71c1c);
         }
-    
+
         #tie {
             background: linear-gradient(to right, #ffc107, #ff9800);
-            max-width: 180px;
+            max-width: 280px;
         }
-    
+
         #player-win {
             background: linear-gradient(to right, #1976d2, #0d47a1);
         }
-    
+
         .draw-buttons {
             display: flex;
-            justify-content: center;
-            gap: 25px;
+            flex-direction: column;
+            gap: 12px;
             width: 100%;
         }
-    
+
         .draw-button {
-            padding: 20px 40px;
-            font-size: 1.6rem;
-            border-radius: 15px;
-            border: none;
+            background: rgba(255, 255, 255, 0.15);
             color: white;
-            font-weight: bold;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 1.4rem;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            touch-action: manipulation;
         }
-    
+
         #banker-draw {
             background: linear-gradient(to right, #f57c00, #e65100);
         }
-    
+
         #player-draw {
             background: linear-gradient(to right, #0288d1, #01579b);
         }
-    
-        .draw-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-        }
-    
+
         .draw-button:active {
             transform: translateY(3px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-    
+
         .result-feedback {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 10rem;
+            font-size: 8rem;
             z-index: 100;
             pointer-events: none;
             opacity: 0;
-            transition: opacity 0.3s;
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
             animation: pulse 0.5s ease-in-out;
         }
-    
+
         .draw-order-hint {
             position: fixed;
             top: 50%;
@@ -372,171 +381,153 @@
             transform: translate(-50%, -50%);
             background: rgba(0, 0, 0, 0.85);
             color: white;
-            padding: 20px;
-            border-radius: 15px;
-            font-size: 2rem;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1.8rem;
             font-weight: bold;
             z-index: 110;
             text-align: center;
-            display: none;
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            display: none;
         }
-    
+
         @keyframes pulse {
             0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
             50% { transform: translate(-50%, -50%) scale(1.2); }
             100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
-    
+
         .correct {
             color: #4CAF50;
         }
-    
+
         .incorrect {
             color: #F44336;
         }
-    
+
         /* 回應式設計 */
-        @media screen and (max-width: 768px) {
-            .logo {
-                font-size: 2.8rem;
-            }
-        
-            .subtitle {
-                font-size: 1.3rem;
-            }
-        
-            .card {
-                width: 60px;
-                height: 90px;
-                font-size: 1.6rem;
-            }
-        
-            .card-value {
-                font-size: 1.5rem;
-            }
-        
-            .card-suit {
-                font-size: 1.2rem;
-            }
-        
-            .title {
-                font-size: 1.8rem;
-            }
-        
-            .win-button {
-                font-size: 1.4rem;
-                padding: 15px 5px;
-            }
-        
-            .draw-button {
-                padding: 15px 30px;
-                font-size: 1.4rem;
-            }
-        
-            .result-feedback {
-                font-size: 8rem;
-            }
-        
-            .draw-order-hint {
-                font-size: 1.5rem;
-                padding: 15px;
-            }
-        }
-    
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 600px) {
             .logo {
                 font-size: 2.2rem;
             }
-        
+          
             .subtitle {
                 font-size: 1.1rem;
             }
-        
+          
             .card {
                 width: 50px;
-                height: 75px;
+                height: 70px;
                 font-size: 1.3rem;
             }
-        
+          
             .title {
                 font-size: 1.5rem;
             }
-        
-            .win-buttons {
-                gap: 8px;
-            }
-        
+          
             .win-button {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
                 padding: 12px 5px;
-                max-width: 120px;
             }
-        
-            #tie {
-                max-width: 100px;
-            }
-        
-            .draw-buttons {
-                gap: 15px;
-            }
-        
+          
             .draw-button {
-                padding: 12px 25px;
-                font-size: 1.1rem;
+                font-size: 1.3rem;
+                padding: 12px;
             }
-        
-            .instructions {
-                padding: 15px;
-                margin: 15px;
+          
+            .score-display {
+                font-size: 1rem;
+                padding: 5px 12px;
             }
-        
+          
             .result-feedback {
                 font-size: 6rem;
             }
-        
-            .draw-order-hint {
+        }
+
+        @media screen and (max-width: 400px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+          
+            .card {
+                width: 45px;
+                height: 63px;
+                font-size: 1.1rem;
+            }
+          
+            .card-value {
                 font-size: 1.2rem;
+            }
+          
+            .card-suit {
+                font-size: 1rem;
+            }
+          
+            .title {
+                font-size: 1.3rem;
+            }
+          
+            .win-button {
+                font-size: 1.1rem;
+                max-width: 250px;
+            }
+          
+            #tie {
+                max-width: 220px;
+            }
+          
+            .draw-button {
+                font-size: 1.1rem;
                 padding: 10px;
-                width: 90%;
+            }
+          
+            .result-feedback {
+                font-size: 5rem;
+            }
+          
+            .draw-order-hint {
+                font-size: 1.5rem;
+                padding: 10px;
             }
         }
-    
+
         /* 橫屏旋轉樣式 */
         @media screen and (orientation: portrait) {
             body {
-                padding: 20px;
+                padding: 15px;
             }
-        
+          
             .main-screen {
                 justify-content: center;
             }
-        
+          
             .game-container {
                 display: none;
             }
-        
+          
             .rotation-hint {
                 display: block;
                 position: absolute;
-                top: 20px;
+                top: 15px;
                 left: 0;
                 right: 0;
                 text-align: center;
                 color: #FFD700;
                 font-size: 1.2rem;
-                padding: 10px;
+                padding: 8px;
                 background: rgba(0, 0, 0, 0.5);
-                border-radius: 0 0 10px 10px;
+                border-radius: 0 0 8px 8px;
+                z-index: 20;
             }
         }
-    
+
         @media screen and (orientation: landscape) {
             .rotation-hint {
                 display: none;
             }
         }
-    
+
         .rotation-hint {
             display: none;
         }
@@ -548,18 +539,19 @@
     <!-- 主介面 -->
     <div class="main-screen" id="mainScreen">
         <div class="logo-container">
-            <div class="logo">BA RULES練習器</div>
+            <div class="logo">BA Rules練習器</div>
             <div class="subtitle">提升您的BA技巧與判斷力</div>
         </div>
-    
+      
         <div class="instructions">
             <h2>遊戲說明</h2>
             <p>1. 遊戲開始後，系統會為B和P各發兩張牌</p>
-            <p>2. 根據BA規則，判斷哪一方會獲勝或是否為和局</p>
-            <p>3. 每次正確預測得10分，錯誤扣5分</p>
-            <p>4. 計時器會記錄您的決策時間</p>
+            <p>2. 根據百家樂規則，判斷哪一方會獲勝或是否為和局</p>
+            <p>3. 點擊下方按鈕選擇您的預測結果</p>
+            <p>4. 每次正確預測得10分，錯誤扣5分</p>
+            <p>5. 計時器會記錄您的決策時間</p>
         </div>
-    
+      
         <button class="start-button" id="startButton">開始遊戲</button>
         <div class="score-display">得分: <span id="score">0</span></div>
     </div>
@@ -568,36 +560,30 @@
     <div class="game-container" id="gameContainer">
         <div class="header">
             <button class="back-button" id="backButton">
-                <i class="fas fa-arrow-left"></i> 返回主介面
+                <i class="fas fa-arrow-left"></i> 返回
             </button>
             <div class="timer-display">
                 <i class="fas fa-clock"></i> <span id="timer">00:00:00</span>
             </div>
             <div class="score-display">得分: <span id="gameScore">0</span></div>
         </div>
-    
+      
         <div class="game-board">
             <!-- 莊家在左 -->
-            <div class="banker">
-                <div class="title">Banker</div>
+            <div class="BANKER">
+                <div class="title">BANKER</div>
                 <div class="cards-container" id="banker-cards"></div>
-                <div class="draw-hint" id="banker-draw-hint" style="color: white; font-weight: bold; display: none;">
-                    請先補牌
-                </div>
             </div>
-        
-            <!-- 閑家在右 -->
-            <div class="player">
-                <div class="title">Player</div>
+          
+            <!-- 閒家在右 -->
+            <div class="PLAYER">
+                <div class="title">PlAYER</div>
                 <div class="cards-container" id="player-cards"></div>
-                <div class="draw-hint" id="player-draw-hint" style="color: white; font-weight: bold; display: none;">
-                    請先補牌
-                </div>
             </div>
         </div>
-    
+      
         <div class="controls">
-            <!-- 莊贏、和局、閑贏按鈕居中並排 -->
+            <!-- 莊贏、和局、閒贏按鈕垂直排列 -->
             <div class="win-buttons">
                 <button class="win-button" id="banker-win">
                     <i class="fas fa-crown"></i> 莊贏
@@ -606,24 +592,24 @@
                     <i class="fas fa-handshake"></i> 和局
                 </button>
                 <button class="win-button" id="player-win">
-                    <i class="fas fa-user"></i> 閑贏
+                    <i class="fas fa-user"></i> 閒贏
                 </button>
             </div>
-        
-            <!-- 莊補牌、閑補牌按鈕 -->
+          
+            <!-- 莊補牌、閒補牌按鈕 -->
             <div class="draw-buttons">
                 <button class="draw-button" id="banker-draw">
                     <i class="fas fa-plus-circle"></i> 莊補牌
                 </button>
                 <button class="draw-button" id="player-draw">
-                    <i class="fas fa-plus-circle"></i> 閑補牌
+                    <i class="fas fa-plus-circle"></i> 閒補牌
                 </button>
             </div>
         </div>
-    
+      
         <div class="result-feedback" id="result-feedback"></div>
         <div class="draw-order-hint" id="draw-order-hint">
-            補牌次序錯誤！必須先補閑家牌，後補莊家牌
+            補牌次序錯誤！必須先補閒家牌，後補莊家牌
         </div>
     </div>
 
@@ -648,7 +634,7 @@
             bankerInitialScore: 0,
             playerInitialScore: 0
         };
-    
+
         // DOM 元素
         const mainScreen = document.getElementById('mainScreen');
         const gameContainer = document.getElementById('gameContainer');
@@ -663,7 +649,7 @@
         const drawOrderHint = document.getElementById('draw-order-hint');
         const playerDrawHint = document.getElementById('player-draw-hint');
         const bankerDrawHint = document.getElementById('banker-draw-hint');
-    
+
         // 計時器函數
         function startTimer() {
             gameState.startTime = Date.now() - gameState.elapsedTime;
@@ -672,32 +658,32 @@
                 updateTimerDisplay();
             }, 10);
         }
-    
+
         function stopTimer() {
             clearInterval(gameState.timerInterval);
         }
-    
+
         function resetTimer() {
             stopTimer();
             gameState.elapsedTime = 0;
             updateTimerDisplay();
         }
-    
+
         function updateTimerDisplay() {
             const totalSeconds = Math.floor(gameState.elapsedTime / 1000);
             const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
             const seconds = (totalSeconds % 60).toString().padStart(2, '0');
             const milliseconds = Math.floor((gameState.elapsedTime % 1000) / 10).toString().padStart(2, '0');
-        
+      
             timerDisplay.textContent = `${minutes}:${seconds}:${milliseconds}`;
         }
-    
+
         // 檢查是否需要補牌
         function checkDrawNeed() {
             // 計算初始牌點（前兩張牌）
             gameState.bankerInitialScore = calculateScore(gameState.bankerCards.slice(0, 2));
             gameState.playerInitialScore = calculateScore(gameState.playerCards.slice(0, 2));
-          
+        
             // 檢查是否已經出現8或9點
             if (gameState.bankerInitialScore === 8 || gameState.bankerInitialScore === 9) {
                 gameState.playerNeedDraw = false;
@@ -706,15 +692,15 @@
                 gameState.playerNeedDraw = false;
                 gameState.bankerNeedDraw = false;
             } else {
-                // 檢查閑家是否需要補牌
+                // 檢查閒家是否需要補牌
                 gameState.playerNeedDraw = (calculateScore(gameState.playerCards) <= 5);
-              
+            
                 // 檢查莊家是否需要補牌
                 if (gameState.playerCards.length === 3) {
-                    // 閑家已補牌，檢查莊家補牌規則
+                    // 閒家已補牌，檢查莊家補牌規則
                     const playerThirdCard = gameState.playerCards[2];
                     const playerThirdValue = getCardValueForRule(playerThirdCard);
-                  
+                
                     if (gameState.bankerInitialScore <= 2) {
                         gameState.bankerNeedDraw = true;
                     } else if (gameState.bankerInitialScore === 3) {
@@ -729,16 +715,16 @@
                         gameState.bankerNeedDraw = false;
                     }
                 } else {
-                    // 閑家未補牌
+                    // 閒家未補牌
                     gameState.bankerNeedDraw = (gameState.bankerInitialScore <= 5);
                 }
             }
-          
+        
             // 顯示補牌提示
             playerDrawHint.style.display = gameState.playerNeedDraw ? 'block' : 'none';
             bankerDrawHint.style.display = gameState.bankerNeedDraw ? 'block' : 'none';
         }
-    
+
         // 獲取牌值用於規則判斷
         function getCardValueForRule(card) {
             if (['10', 'J', 'Q', 'K'].includes(card.value)) {
@@ -749,24 +735,24 @@
                 return parseInt(card.value);
             }
         }
-    
+
         // 處理錯誤操作
         function handleDrawError(message) {
             // 顯示錯誤提示
             drawOrderHint.textContent = message;
             drawOrderHint.style.display = 'block';
-        
+      
             // 顯示錯誤回饋
             resultFeedbackEl.textContent = '✗';
             resultFeedbackEl.className = 'result-feedback incorrect';
             resultFeedbackEl.style.opacity = '1';
-        
+      
             // 扣分
             gameState.score -= 5;
             gameState.currentScore -= 5;
             scoreDisplay.textContent = gameState.score;
             gameScoreDisplay.textContent = gameState.currentScore;
-        
+      
             // 2秒後重置
             setTimeout(() => {
                 resultFeedbackEl.style.opacity = '0';
@@ -775,12 +761,12 @@
                 initGame();
             }, 2000);
         }
-    
+
         // 初始化遊戲
         function initGame() {
             mainScreen.style.display = 'none';
             gameContainer.style.display = 'flex';
-        
+      
             // 重置狀態
             gameState.playerCards = [];
             gameState.bankerCards = [];
@@ -792,87 +778,90 @@
             gameState.drawOrderViolated = false;
             gameState.bankerInitialScore = 0;
             gameState.playerInitialScore = 0;
-        
+      
             // 隱藏提示
             playerDrawHint.style.display = 'none';
             bankerDrawHint.style.display = 'none';
             drawOrderHint.style.display = 'none';
-        
+      
             // 重置計時器
             resetTimer();
             startTimer();
-        
+      
             // 創建牌組
             const suits = ['♠', '♥', '♦', '♣'];
-            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
             let deck = [];
-        
+      
             for (let suit of suits) {
                 for (let value of values) {
                     deck.push({ suit, value });
                 }
             }
-        
+      
             // 洗牌
             for (let i = deck.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [deck[i], deck[j]] = [deck[j], deck[i]];
             }
-        
+      
             // 發前四張牌
             gameState.bankerCards.push(deck.pop(), deck.pop());
             gameState.playerCards.push(deck.pop(), deck.pop());
-        
+      
             // 檢查是否需要補牌
             checkDrawNeed();
-        
+      
             // 渲染牌面
             renderCards();
         }
-    
+
         // 渲染牌面
         function renderCards() {
             playerCardsEl.innerHTML = '';
             bankerCardsEl.innerHTML = '';
-        
-            // 渲染閑家牌
+      
+            // 渲染閒家牌
             gameState.playerCards.forEach(card => {
-                const cardEl = createCardElement(card);
+                const cardEl = createCardElement(card, false);
                 playerCardsEl.appendChild(cardEl);
             });
-        
+      
             // 渲染莊家牌
             gameState.bankerCards.forEach(card => {
-                const cardEl = createCardElement(card);
+                const cardEl = createCardElement(card, false);
                 bankerCardsEl.appendChild(cardEl);
             });
         }
-    
+
         // 創建牌元素
-        function createCardElement(card) {
+        function createCardElement(card, isExtra = false) {
             const cardEl = document.createElement('div');
             cardEl.className = 'card';
-        
+            if (isExtra) {
+                cardEl.classList.add('extra-card');
+            }
+      
             // 特殊處理A、10、J、Q、K
             let valueDisplay = card.value;
             if (card.value === 'A') valueDisplay = 'A';
             if (['10', 'J', 'Q', 'K'].includes(card.value)) valueDisplay = card.value;
-        
+      
             cardEl.innerHTML = `
                 <div class="card-value">${valueDisplay}</div>
                 <div class="card-suit">${card.suit}</div>
             `;
-        
+      
             // 根據花色設置顏色
             if (card.suit === '♥' || card.suit === '♦') {
                 cardEl.style.color = '#d32f2f';
             } else {
                 cardEl.style.color = '#333';
             }
-        
+      
             return cardEl;
         }
-    
+
         // 計算點數
         function calculateScore(cards) {
             let total = 0;
@@ -887,31 +876,31 @@
             });
             return total % 10;
         }
-    
+
         // 檢查結果
         function checkResult(selectedResult) {
             // 停止計時器
             stopTimer();
-        
+      
             // 檢查是否違反補牌次序
             if (gameState.drawOrderViolated) {
                 handleDrawError("補牌次序錯誤！");
                 return;
             }
-        
+      
             // 檢查是否需要補牌但未補
             if ((gameState.playerNeedDraw && !gameState.playerDrawn) || 
                 (gameState.bankerNeedDraw && !gameState.bankerDrawn)) {
                 handleDrawError("未按規定補牌！");
                 return;
             }
-          
+        
             // 計算實際結果
             gameState.bankerScore = calculateScore(gameState.bankerCards);
             gameState.playerScore = calculateScore(gameState.playerCards);
-          
+        
             let actualResult;
-          
+        
             // 特殊規則處理：首張四張牌時
             if (gameState.bankerInitialScore === 8 || gameState.bankerInitialScore === 9) {
                 if (gameState.playerInitialScore < gameState.bankerInitialScore) {
@@ -939,7 +928,7 @@
                     actualResult = 'tie';
                 }
             }
-          
+        
             // 更新分數
             if (selectedResult === actualResult) {
                 gameState.score += 10;
@@ -952,13 +941,13 @@
                 resultFeedbackEl.textContent = '✗';
                 resultFeedbackEl.className = 'result-feedback incorrect';
             }
-          
+        
             scoreDisplay.textContent = gameState.score;
             gameScoreDisplay.textContent = gameState.currentScore;
-          
+        
             // 顯示回饋
             resultFeedbackEl.style.opacity = '1';
-          
+        
             // 2秒後重置
             setTimeout(() => {
                 resultFeedbackEl.style.opacity = '0';
@@ -966,9 +955,10 @@
                 initGame();
             }, 2000);
         }
-    
+
         // 事件監聽
         startButton.addEventListener('click', initGame);
+      
         backButton.addEventListener('click', () => {
             gameContainer.style.display = 'none';
             mainScreen.style.display = 'flex';
@@ -976,28 +966,29 @@
             gameScoreDisplay.textContent = '0';
             resetTimer();
         });
-    
+      
         document.getElementById('banker-draw').addEventListener('click', () => {
             if (gameState.resultSelected) return;
-          
+        
             // 檢查是否需要補莊家牌
             if (!gameState.bankerNeedDraw) {
                 handleDrawError("莊家不需補牌！");
                 return;
             }
-          
-            // 檢查是否已補閑家牌（如果需要的話）
+        
+            // 檢查是否已補閒家牌（如果需要的話）
             if (gameState.playerNeedDraw && !gameState.playerDrawn) {
-                handleDrawError("必須先補閑家牌！");
+                gameState.drawOrderViolated = true;
+                handleDrawError("必須先補閒家牌！");
                 return;
             }
-          
+        
             // 檢查是否已補莊家牌
             if (gameState.bankerDrawn) {
                 handleDrawError("莊家已補牌！");
                 return;
             }
-          
+        
             // 添加一張新牌（模擬隨機）
             const suits = ['♠', '♥', '♦', '♣'];
             const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
@@ -1005,30 +996,33 @@
                 suit: suits[Math.floor(Math.random() * 4)],
                 value: values[Math.floor(Math.random() * 10)]
             };
-          
+        
             gameState.bankerCards.push(newCard);
             gameState.bankerDrawn = true;
-          
+        
             // 重新檢查是否需要補牌
             checkDrawNeed();
-            renderCards();
+          
+            // 渲染新牌（橫放）
+            const cardEl = createCardElement(newCard, true);
+            bankerCardsEl.appendChild(cardEl);
         });
-    
+      
         document.getElementById('player-draw').addEventListener('click', () => {
             if (gameState.resultSelected) return;
-          
-            // 檢查是否需要補閑家牌
+        
+            // 檢查是否需要補閒家牌
             if (!gameState.playerNeedDraw) {
-                handleDrawError("閑家不需補牌！");
+                handleDrawError("閒家不需補牌！");
                 return;
             }
-          
-            // 檢查是否已補閑家牌
+        
+            // 檢查是否已補閒家牌
             if (gameState.playerDrawn) {
-                handleDrawError("閑家已補牌！");
+                handleDrawError("閒家已補牌！");
                 return;
             }
-          
+        
             // 添加一張新牌（模擬隨機）
             const suits = ['♠', '♥', '♦', '♣'];
             const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
@@ -1036,42 +1030,51 @@
                 suit: suits[Math.floor(Math.random() * 4)],
                 value: values[Math.floor(Math.random() * 10)]
             };
-          
+        
             gameState.playerCards.push(newCard);
             gameState.playerDrawn = true;
-          
+        
             // 重新檢查是否需要補牌
             checkDrawNeed();
-            renderCards();
+          
+            // 渲染新牌（橫放）
+            const cardEl = createCardElement(newCard, true);
+            playerCardsEl.appendChild(cardEl);
         });
-    
+      
         document.getElementById('banker-win').addEventListener('click', () => {
             if (gameState.resultSelected) return;
             gameState.resultSelected = true;
             checkResult('banker');
         });
-    
+      
         document.getElementById('player-win').addEventListener('click', () => {
             if (gameState.resultSelected) return;
             gameState.resultSelected = true;
             checkResult('player');
         });
-    
+      
         document.getElementById('tie').addEventListener('click', () => {
             if (gameState.resultSelected) return;
             gameState.resultSelected = true;
             checkResult('tie');
         });
-    
+
         // 初始化主介面
         window.onload = () => {
             scoreDisplay.textContent = gameState.score;
             gameScoreDisplay.textContent = gameState.currentScore;
+          
+            // 微信環境優化
+            if (navigator.userAgent.match(/MicroMessenger/i)) {
+                document.title = "百家樂牌例練習器";
+                // 添加微信回調
+                document.addEventListener('WeixinJSBridgeReady', function() {
+                    document.querySelector('meta[name="viewport"]').setAttribute('content', 
+                        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+                }, false);
+            }
         };
     </script>
 </body>
 </html>
-
-
-
-
