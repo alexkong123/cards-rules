@@ -63,7 +63,6 @@
             font-size: 1.3rem;
             font-weight: bold;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 10;
         }
   
         .start-button {
@@ -243,7 +242,6 @@
             align-items: center;
             gap: 15px;
             min-height: 130px;
-            margin-bottom: 15px;
         }
   
         .card-row {
@@ -427,6 +425,12 @@
   
         .incorrect {
             color: #F44336;
+        }
+  
+        /* 橫放牌的特殊樣式 */
+        .horizontal-card {
+            transform: rotate(90deg);
+            margin: 20px 0;
         }
   
         /* 回應式設計 */
@@ -929,7 +933,7 @@
                 }
                 playerCardsEl.appendChild(cardRow);
             } else if (gameState.playerCards.length === 3) {
-                // 三張牌：前兩張垂直排列，第三張橫放在下方
+                // 三張牌：前兩張垂直排列，第三張橫放
                 // 第一層：前兩張牌
                 const firstRow = document.createElement('div');
                 firstRow.className = 'card-row';
@@ -943,9 +947,7 @@
                 const secondRow = document.createElement('div');
                 secondRow.className = 'card-row';
                 const thirdCard = createCardElement(gameState.playerCards[2]);
-                thirdCard.style.transform = 'rotate(90deg)';
-                thirdCard.style.width = '110px';
-                thirdCard.style.height = '75px';
+                thirdCard.classList.add('horizontal-card');
                 secondRow.appendChild(thirdCard);
                 playerCardsEl.appendChild(secondRow);
             }
@@ -966,6 +968,7 @@
                 }
                 bankerCardsEl.appendChild(cardRow);
             } else if (gameState.bankerCards.length === 3) {
+                // 三張牌：前兩張垂直排列，第三張橫放
                 const firstRow = document.createElement('div');
                 firstRow.className = 'card-row';
                 for (let i = 0; i < 2; i++) {
@@ -977,9 +980,7 @@
                 const secondRow = document.createElement('div');
                 secondRow.className = 'card-row';
                 const thirdCard = createCardElement(gameState.bankerCards[2]);
-                thirdCard.style.transform = 'rotate(90deg)';
-                thirdCard.style.width = '110px';
-                thirdCard.style.height = '75px';
+                thirdCard.classList.add('horizontal-card');
                 secondRow.appendChild(thirdCard);
                 bankerCardsEl.appendChild(secondRow);
             }
