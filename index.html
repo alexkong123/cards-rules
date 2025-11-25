@@ -12,7 +12,7 @@
             box-sizing: border-box;
             font-family: 'PingFang TC', 'Microsoft YaHei', sans-serif;
         }
-      
+    
         body {
             display: flex;
             flex-direction: column;
@@ -22,7 +22,7 @@
             position: relative;
             color: white;
         }
-      
+    
         /* 主介面樣式 */
         .main-screen {
             display: flex;
@@ -33,11 +33,11 @@
             padding: 20px;
             text-align: center;
         }
-      
+    
         .logo-container {
             margin-bottom: 40px;
         }
-      
+    
         .logo {
             font-size: 3.5rem;
             font-weight: bold;
@@ -45,13 +45,13 @@
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
             margin-bottom: 10px;
         }
-      
+    
         .subtitle {
             font-size: 1.5rem;
             color: #FFFFFF;
             opacity: 0.9;
         }
-      
+    
         .score-display {
             position: absolute;
             top: 20px;
@@ -78,16 +78,16 @@
             box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
             transition: all 0.3s ease;
         }
-  
+
         .start-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(255, 75, 43, 0.5);
         }
-  
+
         .start-button:active {
             transform: translateY(1px);
         }
-      
+    
         .instructions {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 15px;
@@ -97,19 +97,19 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-      
+    
         .instructions h2 {
             color: #FFD700;
             margin-bottom: 15px;
         }
-      
+    
         .instructions p {
             color: #FFFFFF;
             margin-bottom: 12px;
             line-height: 1.6;
             text-align: left;
         }
-      
+    
         .highlight {
             color: #FFD700;
             font-weight: bold;
@@ -117,7 +117,7 @@
             padding: 2px 6px;
             border-radius: 4px;
         }
-      
+    
         /* 遊戲介面樣式 */
         .game-container {
             display: none;
@@ -126,7 +126,7 @@
             height: 100%;
             position: relative;
         }
-      
+    
         .header {
             display: flex;
             justify-content: space-between;
@@ -134,7 +134,7 @@
             padding: 15px 20px;
             background: rgba(0, 0, 0, 0.4);
         }
-      
+    
         .back-button {
             background: rgba(255, 255, 255, 0.15);
             color: white;
@@ -150,54 +150,55 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 5;
         }
-      
+    
         .back-button:hover {
             background: rgba(255, 255, 255, 0.25);
             transform: scale(1.05);
         }
-      
+    
         .back-button:active {
             transform: scale(0.95);
         }
-      
+    
         .back-button i {
             font-size: 1.8rem;
         }
-      
+    
+        /* 新添加的樣式：將計時器和得分向左移動 */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1; /* 佔用左側空間 */
+        }
+    
         .timer-score-container {
             display: flex;
             align-items: center;
-            gap: 5px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 4;
+            gap: 15px;
         }
-      
+    
         .timer-display, .game-score-display {
             background: rgba(0, 0, 0, 0.6);
             color: white;
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 1.1rem;
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-      
+
         .game-score-display {
             background: rgba(255, 215, 0, 0.2);
             color: #FFD700;
         }
-      
+    
         .header-controls {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-      
+    
         .end-button {
             background: linear-gradient(to right, #9C27B0, #673AB7);
             color: white;
@@ -212,18 +213,18 @@
             align-items: center;
             gap: 6px;
         }
-      
+    
         .end-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
-      
+    
         .game-board {
             display: flex;
             padding: 15px;
             gap: 15px;
         }
-      
+    
         /* 莊家在左，閒家在右 */
         .banker {
             flex: 1;
@@ -235,9 +236,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            background: linear-gradient(145deg, #FFEB3B 0%, #FFC107 100%);
+            background: linear-gradient(145deg, #FFECB3 0%, #FFC107 100%);
         }
-      
+    
         .player {
             flex: 1;
             display: flex;
@@ -248,9 +249,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            background: linear-gradient(145deg, #F44336 0%, #B71C1C 100%);
+            background: linear-gradient(145deg, #FFAB91 0%, #FF5722 100%);
         }
-      
+    
         .player::before, .banker::before {
             content: '';
             position: absolute;
@@ -260,7 +261,7 @@
             height: 5px;
             background: rgba(255, 255, 255, 0.3);
         }
-      
+    
         .title {
             color: white;
             font-size: 2.2rem;
@@ -268,7 +269,7 @@
             font-weight: bold;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-      
+    
         .cards-container {
             display: flex;
             flex-direction: column;
@@ -276,13 +277,13 @@
             gap: 15px;
             min-height: 130px;
         }
-      
+    
         .card-row {
             display: flex;
             justify-content: center;
             gap: 10px;
         }
-      
+    
         .card {
             width: 75px;
             height: 110px;
@@ -299,11 +300,11 @@
             overflow: hidden;
             transition: transform 0.3s ease;
         }
-      
+    
         .card:hover {
             transform: translateY(-5px);
         }
-      
+    
         .card::before {
             content: '';
             position: absolute;
@@ -313,24 +314,24 @@
             height: 25%;
             background: rgba(0, 0, 0, 0.1);
         }
-      
+    
         .card-value {
             font-size: 1.8rem;
         }
-      
+    
         .card-suit {
             font-size: 1.5rem;
             margin-top: 5px;
         }
-      
+    
         .controls {
             display: flex;
             flex-direction: column;
             gap: 25px;
             padding: 0 15px 25px;
         }
-      
-        /* 莊贏、閒贏及和局按鈕向下移，莊補牌及閒補牌按鈕向上移 */
+    
+        /* 莊補牌及閒補牌按鈕向上移 */
         .draw-buttons {
             display: flex;
             justify-content: center;
@@ -338,7 +339,7 @@
             width: 100%;
             flex-wrap: wrap;
         }
-      
+
         .win-buttons {
             display: flex;
             justify-content: center;
@@ -347,7 +348,7 @@
             flex-wrap: wrap;
             margin-top: 20px; /* 添加頂部邊距，使其向下移動 */
         }
-      
+    
         .draw-button {
             padding: 20px 40px;
             font-size: 1.6rem;
@@ -360,17 +361,17 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             min-width: 140px;
         }
-      
+    
         #banker-draw {
-            background: linear-gradient(to right, #FFF9C4 0%, #FFECB3 100%);
+            background: linear-gradient(to right, #FFECB3 0%, #FFC107 100%);
             color: #333;
         }
-      
+    
         #player-draw {
-            background: linear-gradient(to right, #FFCDD2 0%, #FFAB91 100%);
+            background: linear-gradient(to right, #FFAB91 0%, #FF5722 100%);
             color: #333;
         }
-      
+    
         .win-button {
             padding: 20px 5px;
             font-size: 1.8rem;
@@ -387,21 +388,21 @@
             gap: 10px;
             min-width: 100px;
         }
-      
+    
         #banker-win {
-            background: linear-gradient(to right, #FFF9C4 0%, #FFECB3 100%);
+            background: linear-gradient(to right, #FFECB3 0%, #FFC107 100%);
             color: #333;
         }
-      
+    
         #tie {
             background: linear-gradient(to right, #C8E6C9 0%, #A5D6A7 100%);
         }
-      
+    
         #player-win {
-            background: linear-gradient(to right, #FFCDD2 0%, #FFAB91 100%);
+            background: linear-gradient(to right, #FFAB91 0%, #FF5722 100%);
             color: #333;
         }
-      
+    
         .result-feedback {
             position: fixed;
             top: 50%;
@@ -414,7 +415,7 @@
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
             animation: pulse 0.5s ease-in-out;
         }
-      
+    
         .draw-order-hint {
             position: fixed;
             top: 50%;
@@ -433,174 +434,174 @@
             width: 90%;
             max-width: 500px;
         }
-      
+    
         @keyframes pulse {
             0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
             50% { transform: translate(-50%, -50%) scale(1.2); }
             100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
-      
+    
         .correct {
             color: #4CAF50;
         }
-      
+    
         .incorrect {
             color: #F44336;
         }
-      
+    
         /* 橫放牌的特殊樣式 */
         .horizontal-card {
             transform: rotate(90deg);
             margin: 20px 0;
         }
-      
+    
         /* 回應式設計 */
         @media screen and (max-width: 768px) {
             .logo {
                 font-size: 2.8rem;
             }
-          
+        
             .subtitle {
                 font-size: 1.3rem;
             }
-          
+        
             .card {
                 width: 60px;
                 height: 90px;
                 font-size: 1.6rem;
             }
-          
+        
             .card-value {
                 font-size: 1.5rem;
             }
-          
+        
             .card-suit {
                 font-size: 1.2rem;
             }
-          
+        
             .title {
                 font-size: 1.8rem;
             }
-          
+        
             .back-button {
                 width: 50px;
                 height: 50px;
             }
-          
+        
             .back-button i {
                 font-size: 1.5rem;
             }
-          
+        
             .timer-display, .game-score-display {
                 font-size: 0.9rem;
-                padding: 6px 15px;
+                padding: 6px 12px;
             }
-          
+        
             .draw-buttons, .win-buttons {
                 gap: 8px;
             }
-          
+        
             .draw-button {
                 padding: 15px 30px;
                 font-size: 1.4rem;
                 min-width: 120px;
             }
-          
+        
             .win-button {
                 font-size: 1.4rem;
                 padding: 15px 5px;
                 min-width: 80px;
             }
-          
+        
             .result-feedback {
                 font-size: 8rem;
             }
-          
+        
             .draw-order-hint {
                 font-size: 1.5rem;
                 padding: 15px;
             }
         }
-      
+    
         @media screen and (max-width: 480px) {
             .logo {
                 font-size: 2.2rem;
             }
-          
+        
             .subtitle {
                 font-size: 1.1rem;
             }
-          
+        
             .score-display {
                 font-size: 1.1rem;
                 padding: 8px 15px;
             }
-          
+        
             .card {
                 width: 50px;
                 height: 75px;
                 font-size: 1.3rem;
             }
-          
+        
             .title {
                 font-size: 1.5rem;
             }
-          
+        
             .back-button {
                 width: 45px;
                 height: 45px;
             }
-          
+        
             .back-button i {
                 font-size: 1.3rem;
             }
-          
+        
             .timer-display, .game-score-display {
                 font-size: 0.8rem;
-                padding: 5px 12px;
+                padding: 5px 10px;
             }
-          
+        
             .draw-buttons, .win-buttons {
                 gap: 8px;
             }
-          
+        
             .draw-button {
                 padding: 12px 20px;
                 font-size: 1.1rem;
                 min-width: 100px;
             }
-          
+        
             .win-button {
                 font-size: 1.1rem;
                 padding: 12px 5px;
                 min-width: 70px;
             }
-          
+        
             .result-feedback {
                 font-size: 6rem;
             }
-          
+        
             .draw-order-hint {
                 font-size: 1.2rem;
                 padding: 10px;
                 width: 90%;
             }
         }
-      
+    
         /* 橫屏旋轉樣式 */
         @media screen and (orientation: portrait) {
             body {
                 padding: 20px;
             }
-          
+        
             .main-screen {
                 justify-content: start;
             }
-          
+        
             .game-container {
                 display: none;
             }
-          
+        
             .rotation-hint {
                 display: block;
                 position: absolute;
@@ -616,18 +617,18 @@
                 z-index: 100;
             }
         }
-      
+    
         @media screen and (orientation: landscape) {
             .rotation-hint {
                 display: none;
             }
         }
-      
+    
         .rotation-hint {
             display: none;
             z-index: 1000;
         }
-      
+    
         /* 添加统计面板样式 */
         .stats-panel {
             position: fixed;
@@ -648,24 +649,24 @@
             width: 90%;
             max-width: 600px;
         }
-      
+    
         .stats-panel h2 {
             color: #FFD700;
             margin-bottom: 25px;
             font-size: 2rem;
         }
-      
+    
         .stats-item {
             margin: 15px 0;
             display: flex;
             justify-content: space-between;
         }
-      
+    
         .stats-value {
             color: #4CAF50;
             font-weight: bold;
         }
-      
+    
         .close-stats {
             margin-top: 25px;
             background: linear-gradient(to right, #FF416C, #FF4B2B);
@@ -680,7 +681,7 @@
             transition: all 0.3s ease;
             width: 100%;
         }
-      
+    
         .close-stats:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
@@ -713,19 +714,19 @@
     <!-- 遊戲介面 -->
     <div class="game-container" id="gameContainer">
         <div class="header">
-            <button class="back-button" id="backButton">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-          
-            <div class="timer-score-container">
-                <div class="timer-display">
-                    <i class="fas fa-clock"></i> <span id="timer">00:00:00</span>
-                </div>
-                <div class="game-score-display">
-                    <i class="fas fa-star"></i> <span id="gameScore">0</span>
+            <div class="header-left">
+                <button class="back-button" id="backButton">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="timer-score-container">
+                    <div class="timer-display">
+                        <i class="fas fa-clock"></i> <span id="timer">00:00:00</span>
+                    </div>
+                    <div class="game-score-display">
+                        <i class="fas fa-star"></i> <span id="gameScore">0</span>
+                    </div>
                 </div>
             </div>
-          
             <div class="header-controls">
                 <button class="end-button" id="endButton">
                     <i class="fas fa-flag-checkered"></i> 結束遊戲
@@ -741,7 +742,7 @@
                 <div class="draw-hint" id="banker-draw-hint" style="color: white; font-weight: bold; display: none;">
                 </div>
             </div>
-  
+
             <!-- 閒家在右 -->
             <div class="player">
                 <div class="title">PLAYER</div>
@@ -761,7 +762,7 @@
                     <i class="fas fa-plus-circle"></i> 閒補牌
                 </button>
             </div>
-          
+        
             <!-- 庄贏、閒贏及和局按鈕向下移 -->
             <div class="win-buttons">
                 <button class="win-button" id="banker-win">
@@ -780,7 +781,7 @@
         <div class="draw-order-hint" id="draw-order-hint">
             補牌次序錯誤！必須先補閒家牌，後補莊家牌
         </div>
-    
+  
         <!-- 統計面板 -->
         <div class="stats-panel" id="statsPanel">
             <h2>遊戲統計</h2>
@@ -828,8 +829,6 @@
             resultSelected: false,
             score: 0,
             currentScore: 0,
-            timerInterval: null,
-            startTime: null,
             elapsedTime: 0,
             playerNeedDraw: false,
             bankerNeedDraw: false,
@@ -842,9 +841,7 @@
             incorrectGames: 0,
             gameStartTime: null,
             totalGameTime: 0,
-            // 追蹤所有對局
             allGames: [],
-            // 調試模式
             debugMode: true
         };
 
@@ -896,7 +893,7 @@
             const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
             const seconds = (totalSeconds % 60).toString().padStart(2, '0');
             const milliseconds = Math.floor((gameState.elapsedTime % 1000) / 10).toString().padStart(2, '0');
-  
+
             timerDisplay.textContent = `${minutes}:${seconds}:${milliseconds}`;
         }
 
@@ -904,7 +901,7 @@
         function initGame() {
             mainScreen.style.display = 'none';
             gameContainer.style.display = 'flex';
-  
+
             // 重置狀態
             gameState.playerCards = [];
             gameState.bankerCards = [];
@@ -919,47 +916,50 @@
             gameState.playerInitialScore = 0;
             gameState.currentScore = 0;
             gameState.gameStartTime = Date.now();
-  
+
             // 隱藏提示
             playerDrawHint.style.display = 'none';
             bankerDrawHint.style.display = 'none';
             drawOrderHint.style.display = 'none';
-  
+
             // 重置計時器
             resetTimer();
             startTimer();
-        
+      
             // 記錄單局開始時間
             gameState.gameStartTime = Date.now();
-  
+
             // 創建牌組
             const suits = ['♠', '♥', '♦', '♣'];
             const values =['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
             let deck = [];
-  
+
             for (let suit of suits) {
                 for (let value of values) {
                     deck.push({ suit, value });
                 }
             }
-  
+
             // 洗牌
             for (let i = deck.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [deck[i], deck[j]] = [deck[j], deck[i]];
             }
-  
+
             // 發前四張牌
             gameState.bankerCards.push(deck.pop(), deck.pop());
             gameState.playerCards.push(deck.pop(), deck.pop());
-  
+
             // 檢查是否需要補牌
             checkDrawNeed();
-  
+
             // 渲染牌面
             renderCards();
-          
-            // 調試日誌
+        
+            // 更新分數顯示
+            scoreDisplay.textContent = gameState.score;
+            gameScoreDisplay.textContent = gameState.currentScore;
+        
             if (gameState.debugMode) {
                 console.log("=== 新局開始 ===");
                 console.log("莊家牌:", gameState.bankerCards);
@@ -971,7 +971,7 @@
         function renderCards() {
             playerCardsEl.innerHTML = '';
             bankerCardsEl.innerHTML = '';
-  
+
             // 渲染閒家牌
             if (gameState.playerCards.length === 1) {
                 const cardRow = document.createElement('div');
@@ -996,7 +996,7 @@
                     firstRow.appendChild(cardEl);
                 }
                 playerCardsEl.appendChild(firstRow);
-          
+        
                 const secondRow = document.createElement('div');
                 secondRow.className = 'card-row';
                 const thirdCard = createCardElement(gameState.playerCards[2]);
@@ -1004,7 +1004,7 @@
                 secondRow.appendChild(thirdCard);
                 playerCardsEl.appendChild(secondRow);
             }
-  
+
             // 渲染莊家牌
             if (gameState.bankerCards.length === 1) {
                 const cardRow = document.createElement('div');
@@ -1029,7 +1029,7 @@
                     firstRow.appendChild(cardEl);
                 }
                 bankerCardsEl.appendChild(firstRow);
-          
+        
                 const secondRow = document.createElement('div');
                 secondRow.className = 'card-row';
                 const thirdCard = createCardElement(gameState.bankerCards[2]);
@@ -1043,40 +1043,25 @@
         function createCardElement(card) {
             const cardEl = document.createElement('div');
             cardEl.className = 'card';
-  
+
             // 特殊處理A、10、J、Q、K
             let valueDisplay = card.value;
             if (card.value === 'A') valueDisplay = 'A';
             if (['10', 'J', 'Q', 'K'].includes(card.value)) valueDisplay = card.value;
-  
+
             cardEl.innerHTML = `
                 <div class="card-value">${valueDisplay}</div>
                 <div class="card-suit">${card.suit}</div>
             `;
-  
+
             // 根據花色設置顏色
             if (card.suit === '♥' || card.suit === '♦') {
                 cardEl.style.color = '#d32f2f';
             } else {
                 cardEl.style.color = '#333';
             }
-  
-            return cardEl;
-        }
 
-        // 計算點數
-        function calculateScore(cards) {
-            let total = 0;
-            cards.forEach(card => {
-                if (['10', 'J', 'Q', 'K'].includes(card.value)) {
-                    total += 0;
-                } else if (card.value === 'A') {
-                    total += 1;
-                } else {
-                    total += parseInt(card.value);
-                }
-            });
-            return total % 10;
+            return cardEl;
         }
 
         // 檢查是否需要補牌
@@ -1084,7 +1069,7 @@
             // 計算初始牌點（前兩張牌）
             gameState.bankerInitialScore = calculateScore(gameState.bankerCards.slice(0, 2));
             gameState.playerInitialScore = calculateScore(gameState.playerCards.slice(0, 2));
-    
+  
             // 檢查是否已經出現8或9點
             if (gameState.bankerInitialScore === 8 || gameState.bankerInitialScore === 9) {
                 gameState.playerNeedDraw = false;
@@ -1095,13 +1080,13 @@
             } else {
                 // 檢查閒家是否需要補牌
                 gameState.playerNeedDraw = (calculateScore(gameState.playerCards) <= 5);
-        
+      
                 // 檢查莊家是否需要補牌
                 if (gameState.playerCards.length === 3) {
                     // 閒家已補牌，檢查莊家補牌規則
                     const playerThirdCard = gameState.playerCards[2];
                     const playerThirdValue = getCardValueForRule(playerThirdCard);
-            
+          
                     if (gameState.bankerInitialScore <= 2) {
                         gameState.bankerNeedDraw = true;
                     } else if (gameState.bankerInitialScore === 3) {
@@ -1120,12 +1105,11 @@
                     gameState.bankerNeedDraw = (gameState.bankerInitialScore <= 5);
                 }
             }
-    
+  
             // 顯示補牌提示
             playerDrawHint.style.display = gameState.playerNeedDraw ? 'block' : 'none';
             bankerDrawHint.style.display = gameState.bankerNeedDraw ? 'block' : 'none';
-          
-            // 調試日誌
+        
             if (gameState.debugMode) {
                 console.log("是否需要補牌: ", {
                     playerNeedDraw: gameState.playerNeedDraw,
@@ -1145,40 +1129,102 @@
             }
         }
 
+        // 計算點數
+        function calculateScore(cards) {
+            let total = 0;
+            cards.forEach(card => {
+                if (['10', 'J', 'Q', 'K'].includes(card.value)) {
+                    total += 0;
+                } else if (card.value === 'A') {
+                    total += 1;
+                } else {
+                    total += parseInt(card.value);
+                }
+            });
+            return total % 10;
+        }
+
+        // 處理補牌操作
+        function handleDrawCard(side) {
+            if (gameState.resultSelected) return;
+
+            // 檢查補牌順序
+            if (side === 'player') {
+                // 閒家補牌
+                if (!gameState.playerNeedDraw) {
+                    handleError("閒家不需補牌！");
+                    return;
+                }
+                if (gameState.playerDrawn) {
+                    handleError("閒家已補牌！");
+                    return;
+                }
+                gameState.playerDrawn = true;
+            } else {
+                // 莊家補牌
+                if (!gameState.bankerNeedDraw) {
+                    handleError("莊家不需補牌！");
+                    return;
+                }
+                if (!gameState.playerDrawn && gameState.playerNeedDraw) {
+                    handleError("必須先補閒家牌！");
+                    return;
+                }
+                if (gameState.bankerDrawn) {
+                    handleError("莊家已補牌！");
+                    return;
+                }
+                gameState.bankerDrawn = true;
+            }
+
+            // 添加一張新牌（模擬隨機）
+            const suits = ['♠', '♥', '♦', '♣'];
+            const values =['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+            const newCard = {
+                suit: suits[Math.floor(Math.random() * 4)],
+                value: values[Math.floor(Math.random() * 13)]
+            };
+
+            gameState[side + 'Cards'].push(newCard);
+            gameState[side + 'Drawn'] = true;
+
+            // 重新檢查是否需要補牌
+            checkDrawNeed();
+            renderCards();
+        }
+
         // 處理錯誤操作
-        function handleDrawError(message) {
-            // 記錄這局為錯誤局數
+        function handleError(message) {
+            // 記錄這局为錯誤局數
             gameState.incorrectGames++;
             gameState.totalGames++;
-          
+        
             // 顯示錯誤提示
             drawOrderHint.textContent = message;
             drawOrderHint.style.display = 'block';
-  
+
             // 顯示錯誤反饋
             resultFeedbackEl.textContent = '✗';
             resultFeedbackEl.className = 'result-feedback incorrect';
             resultFeedbackEl.style.opacity = '1';
-  
+
             // 扣分
             gameState.score -= 5;
             gameState.currentScore -= 5;
             scoreDisplay.textContent = gameState.score;
             gameScoreDisplay.textContent = gameState.currentScore;
-  
+
             // 增加錯誤局數
-            // 記錄這局資訊
             gameState.allGames.push({
                 result: 'error',
                 reason: message,
                 time: Date.now() - gameState.gameStartTime
             });
-  
+
             // 2秒後重置
             setTimeout(() => {
                 resultFeedbackEl.style.opacity = '0';
                 drawOrderHint.style.display = 'none';
-                resetTimer();
                 initGame();
             }, 2000);
         }
@@ -1187,36 +1233,36 @@
         function checkResult(selectedResult) {
             // 停頓計時器
             stopTimer();
-        
+      
             // 記錄單局結束時間
             const gameEndTime = Date.now();
             const gameTime = gameEndTime - gameState.gameStartTime;
             gameState.totalGameTime += gameTime;
-        
+      
             // 更新遊戲局數
             gameState.totalGames++;
-        
-            // 檢查是否違反補牌次序
+      
+            // 檢查是否違反補牌順序
             if (gameState.drawOrderViolated) {
-                handleDrawError("補牌次序錯誤！");
+                handleError("補牌次序錯誤！");
+                gameState.incorrectGames++;
+                return;
+            }
+
+            // 檢查是否需要補牌但未補
+            if ((gameState.playerNeedDraw && !gameState.playerDrawn) || 
+                (gameState.bankerNeedDraw && !gameState.bankerDrawn)) {
+                handleError("未按規定補牌！");
                 gameState.incorrectGames++;
                 return;
             }
   
-            // 檢查是否需要補牌但未補
-            if ((gameState.playerNeedDraw && !gameState.playerDrawn) || 
-                (gameState.bankerNeedDraw && !gameState.bankerDrawn)) {
-                handleDrawError("未按規定補牌！");
-                gameState.incorrectGames++;
-                return;
-            }
-    
             // 計算實際結果
             gameState.bankerScore = calculateScore(gameState.bankerCards);
             gameState.playerScore = calculateScore(gameState.playerCards);
-    
+  
             let actualResult;
-    
+  
             // 特殊規則處理：首張四張牌時
             if (gameState.bankerInitialScore === 8 || gameState.bankerInitialScore === 9) {
                 if (gameState.playerInitialScore < gameState.bankerInitialScore) {
@@ -1244,7 +1290,7 @@
                     actualResult = 'tie';
                 }
             }
-    
+  
             // 更新分數和遊戲結果
             if (selectedResult === actualResult) {
                 gameState.score += 10;
@@ -1259,25 +1305,21 @@
                 resultFeedbackEl.textContent = '✗';
                 resultFeedbackEl.className = 'result-feedback incorrect';
             }
-    
+  
             scoreDisplay.textContent = gameState.score;
             gameScoreDisplay.textContent = gameState.currentScore;
-    
-            // 顯示回饋
+  
             resultFeedbackEl.style.opacity = '1';
-    
-            // 記錄這局資訊
+  
             gameState.allGames.push({
                 result: selectedResult === actualResult ? 'correct' : 'incorrect',
                 actual: actualResult,
                 selected: selectedResult,
                 time: gameTime
             });
-    
-            // 2秒後重置
+  
             setTimeout(() => {
                 resultFeedbackEl.style.opacity = '0';
-                resetTimer();
                 initGame();
             }, 2000);
         }
@@ -1293,101 +1335,43 @@
         });
 
         document.getElementById('banker-draw').addEventListener('click', () => {
-            if (gameState.resultSelected) return;
-  
-            // 檢查是否需要補莊家牌
-            if (!gameState.bankerNeedDraw) {
-                handleDrawError("莊家不需補牌！");
-                return;
-            }
-  
-            // 檢查是否已補閒家牌（如果需要的話）
-            if (gameState.playerNeedDraw && !gameState.playerDrawn) {
-                gameState.drawOrderViolated = true;
-                handleDrawError("必須先補閒家牌！");
-                return;
-            }
-  
-            // 檢查是否已補莊家牌
-            if (gameState.bankerDrawn) {
-                handleDrawError("莊家已補牌！");
-                return;
-            }
-  
-            // 添加一張新牌（模拟隨機）
-            const suits = ['♠', '♥', '♦', '♣'];
-            const values =['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-            const newCard = {
-                suit: suits[Math.floor(Math.random() * 4)],
-                value: values[Math.floor(Math.random() * 13)]
-            };
-  
-            gameState.bankerCards.push(newCard);
-            gameState.bankerDrawn = true;
-  
-            // 重新檢查是否需要補牌
-            checkDrawNeed();
-            renderCards();
+            handleDrawCard('banker');
         });
 
         document.getElementById('player-draw').addEventListener('click', () => {
-            if (gameState.resultSelected) return;
-  
-            // 檢查是否需要補閒家牌
-            if (!gameState.playerNeedDraw) {
-                handleDrawError("閒家不需補牌！");
-                return;
-            }
-  
-            // 檢查是否已補閒家牌
-            if (gameState.playerDrawn) {
-                handleDrawError("閒家已補牌！");
-                return;
-            }
-  
-            // 添加一張新牌（模拟隨機）
-            const suits = ['♠', '♥', '♦', '♣'];
-            const values =['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-            const newCard = {
-                suit: suits[Math.floor(Math.random() * 4)],
-                value: values[Math.floor(Math.random() * 13)]
-            };
-  
-            gameState.playerCards.push(newCard);
-            gameState.playerDrawn = true;
-  
-            // 重新檢查是否需要補牌
-            checkDrawNeed();
-            renderCards();
+            handleDrawCard('player');
         });
 
         document.getElementById('banker-win').addEventListener('click', () => {
-            if (gameState.resultSelected) return;
-            gameState.resultSelected = true;
-            checkResult('banker');
+            if (!gameState.resultSelected) {
+                gameState.resultSelected = true;
+                checkResult('banker');
+            }
         });
 
         document.getElementById('player-win').addEventListener('click', () => {
-            if (gameState.resultSelected) return;
-            gameState.resultSelected = true;
-            checkResult('player');
+            if (!gameState.resultSelected) {
+                gameState.resultSelected = true;
+                checkResult('player');
+            }
         });
 
         document.getElementById('tie').addEventListener('click', () => {
-            if (gameState.resultSelected) return;
-            gameState.resultSelected = true;
-            checkResult('tie');
+            if (!gameState.resultSelected) {
+                gameState.resultSelected = true;
+                checkResult('tie');
+            }
         });
 
-        // 新增事件監聽：結束按鈕
+        // 結束遊戲並顯示統計
         endButton.addEventListener('click', () => {
             // 停止計時器
             stopTimer();
-        
+      
             // 計算正確率
             const accuracyRate = gameState.totalGames > 0 ? 
                 Math.round((gameState.correctGames / gameState.totalGames) * 100) : 0;
-        
+      
             // 格式化時間顯示
             const formatTime = (milliseconds) => {
                 const totalSeconds = Math.floor(milliseconds / 1000);
@@ -1395,33 +1379,30 @@
                 const seconds = totalSeconds % 60;
                 return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             };
-        
+      
             // 更新統計面板
             totalGamesEl.textContent = gameState.totalGames;
             correctGamesEl.textContent = gameState.correctGames;
             incorrectGamesEl.textContent = gameState.incorrectGames;
             errorRateEl.textContent = `${accuracyRate}%`;
             totalTimeEl.textContent = formatTime(gameState.totalGameTime);
-            avgTimeEl.textContent = formatTime(gameState.totalGameTime / gameState.totalGames);
-        
+            avgTimeEl.textContent = gameState.totalGames > 0 ? 
+                formatTime(gameState.totalGameTime / gameState.totalGames) : '00:00';
+      
             // 顯示統計面板
             statsPanel.style.display = 'block';
         });
-    
-        // 新增事件監聽：關閉統計面板
+  
+        // 關閉統計面板並繼續遊戲
         closeStatsBtn.addEventListener('click', () => {
             statsPanel.style.display = 'none';
-            // 重新開始遊戲
             initGame();
         });
 
         // 初始化主界面
         window.onload = () => {
             scoreDisplay.textContent = gameState.score;
-            gameScoreDisplay.textContent = gameState.currentScore;
         };
     </script>
 </body>
 </html>
-
-
