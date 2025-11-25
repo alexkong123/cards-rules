@@ -64,8 +64,8 @@
             font-weight: bold;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-      
-	    .start-button {
+
+        .start-button {
             background: linear-gradient(to right, #FF416C, #FF4B2B);
             color: white;
             border: none;
@@ -87,7 +87,7 @@
         .start-button:active {
             transform: translateY(1px);
         }
-  
+      
         .instructions {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 15px;
@@ -108,6 +108,14 @@
             margin-bottom: 12px;
             line-height: 1.6;
             text-align: left;
+        }
+      
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
       
         /* 遊戲介面樣式 */
@@ -322,66 +330,22 @@
             padding: 0 15px 25px;
         }
       
-        /* 莊贏、和局、閒贏按鈕居中並排 */
-        .win-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 10px;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-      
-        .win-button {
-            flex: 1;
-            min-width: 100px;
-            padding: 20px 5px;
-            font-size: 1.8rem;
-            border-radius: 15px;
-            border: none;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-      
-        .win-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-        }
-      
-        .win-button:active {
-            transform: translateY(3px);
-        }
-      
-        #banker-win {
-            background: linear-gradient(to right, #FFF9C4 0%, #FFECB3 100%);
-            color: #333;
-            min-width: 120px;
-        }
-      
-        #tie {
-            background: linear-gradient(to right, #C8E6C9 0%, #A5D6A7 100%);
-            min-width: 100px;
-        }
-      
-        #player-win {
-            background: linear-gradient(to right, #FFCDD2 0%, #FFAB91 100%);
-            color: #333;
-            min-width: 120px;
-        }
-      
+        /* 莊贏、閒贏及和局按鈕向下移，莊補牌及閒補牌按鈕向上移 */
         .draw-buttons {
             display: flex;
             justify-content: center;
             gap: 25px;
             width: 100%;
             flex-wrap: wrap;
+        }
+      
+        .win-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-top: 20px; /* 添加頂部邊距，使其向下移動 */
         }
       
         .draw-button {
@@ -403,6 +367,37 @@
         }
       
         #player-draw {
+            background: linear-gradient(to right, #FFCDD2 0%, #FFAB91 100%);
+            color: #333;
+        }
+      
+        .win-button {
+            padding: 20px 5px;
+            font-size: 1.8rem;
+            border-radius: 15px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 100px;
+        }
+      
+        #banker-win {
+            background: linear-gradient(to right, #FFF9C4 0%, #FFECB3 100%);
+            color: #333;
+        }
+      
+        #tie {
+            background: linear-gradient(to right, #C8E6C9 0%, #A5D6A7 100%);
+        }
+      
+        #player-win {
             background: linear-gradient(to right, #FFCDD2 0%, #FFAB91 100%);
             color: #333;
         }
@@ -501,28 +496,20 @@
                 padding: 6px 15px;
             }
           
-            .win-buttons {
+            .draw-buttons, .win-buttons {
                 gap: 8px;
-            }
-          
-            .win-button {
-                font-size: 1.4rem;
-                padding: 15px 5px;
-                min-width: 80px;
-            }
-          
-            #tie {
-                min-width: 70px;
-            }
-          
-            .draw-buttons {
-                gap: 15px;
             }
           
             .draw-button {
                 padding: 15px 30px;
                 font-size: 1.4rem;
                 min-width: 120px;
+            }
+          
+            .win-button {
+                font-size: 1.4rem;
+                padding: 15px 5px;
+                min-width: 80px;
             }
           
             .result-feedback {
@@ -573,20 +560,20 @@
                 padding: 5px 12px;
             }
           
-            .win-button {
-                font-size: 1.1rem;
-                padding: 12px 5px;
-                min-width: 70px;
-            }
-          
-            #tie {
-                min-width: 60px;
+            .draw-buttons, .win-buttons {
+                gap: 8px;
             }
           
             .draw-button {
                 padding: 12px 20px;
                 font-size: 1.1rem;
                 min-width: 100px;
+            }
+          
+            .win-button {
+                font-size: 1.1rem;
+                padding: 12px 5px;
+                min-width: 70px;
             }
           
             .result-feedback {
@@ -698,13 +685,6 @@
             transform: scale(1.05);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
-      
-        /* 调整header布局 */
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
     </style>
 </head>
 <body>
@@ -722,8 +702,8 @@
             <p>1. 遊戲開始後，系統會為”B”和”P”各發兩張牌</p>
             <p>2. 根據BA規則，判斷哪一方需補牌、獲勝或和局</p>
             <p>3. 每次正確預測得10分，錯誤扣5分</p>
-            <p >4. 10/J/Q/K牌點值為0</p>
-            <p >5. 未按規定補牌也視為錯誤</span></p>
+            <p>4. 10/J/Q/K牌點值為0</p>
+            <p>5. 未按規定補牌也視為錯誤</p>
         </div>
 
         <button class="start-button" id="startButton">開始遊戲</button>
@@ -754,7 +734,7 @@
         </div>
 
         <div class="game-board">
-            <!-- 莊家在左 -->
+            <!-- 莊家在左，閒家在右 -->
             <div class="banker">
                 <div class="title">BANKER</div>
                 <div class="cards-container" id="banker-cards"></div>
@@ -774,7 +754,17 @@
         </div>
 
         <div class="controls">
-            <!-- 莊贏、和局、閒贏按鈕居中並排 -->
+            <!-- 莊補牌及閒補牌按鈕向上移 -->
+            <div class="draw-buttons">
+                <button class="draw-button" id="banker-draw">
+                    <i class="fas fa-plus-circle"></i> 莊補牌
+                </button>
+                <button class="draw-button" id="player-draw">
+                    <i class="fas fa-plus-circle"></i> 閒補牌
+                </button>
+            </div>
+          
+            <!-- 庄贏、閒贏及和局按鈕向下移 -->
             <div class="win-buttons">
                 <button class="win-button" id="banker-win">
                     <i class="fas fa-crown"></i> 莊贏
@@ -784,16 +774,6 @@
                 </button>
                 <button class="win-button" id="player-win">
                     <i class="fas fa-user"></i> 閒贏
-                </button>
-            </div>
-  
-            <!-- 莊補牌、閒補牌按鈕 -->
-            <div class="draw-buttons">
-                <button class="draw-button" id="banker-draw">
-                    <i class="fas fa-plus-circle"></i> 莊補牌
-                </button>
-                <button class="draw-button" id="player-draw">
-                    <i class="fas fa-plus-circle"></i> 閒補牌
                 </button>
             </div>
         </div>
@@ -865,7 +845,9 @@
             gameStartTime: null,
             totalGameTime: 0,
             // 追蹤所有對局
-            allGames: []
+            allGames: [],
+            // 調試模式
+            debugMode: true
         };
 
         // DOM 元素
@@ -978,6 +960,13 @@
   
             // 渲染牌面
             renderCards();
+          
+            // 調試日誌
+            if (gameState.debugMode) {
+                console.log("=== 新局開始 ===");
+                console.log("莊家牌:", gameState.bankerCards);
+                console.log("閒家牌:", gameState.playerCards);
+            }
         }
 
         // 渲染牌面
@@ -1137,6 +1126,14 @@
             // 顯示補牌提示
             playerDrawHint.style.display = gameState.playerNeedDraw ? 'block' : 'none';
             bankerDrawHint.style.display = gameState.bankerNeedDraw ? 'block' : 'none';
+          
+            // 調試日誌
+            if (gameState.debugMode) {
+                console.log("是否需要補牌: ", {
+                    playerNeedDraw: gameState.playerNeedDraw,
+                    bankerNeedDraw: gameState.bankerNeedDraw
+                });
+            }
         }
 
         // 獲取牌值用於規則判斷
